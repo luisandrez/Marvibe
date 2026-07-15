@@ -491,7 +491,7 @@
 
             };
 
-            const respuesta = await fetch("http://localhost:3000/crear-link-pago", {
+            const respuesta = await fetch("https://marvibe.orender.com/crear-link-pago", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json"
@@ -619,7 +619,7 @@
         async function crearPago(servicio, monto) {
             const nombre = prompt("nombre completo:");
             if (!nombre) return;
-            const respuesta = await fetch("http:localhost:3000/crear-link-pago", {
+            const respuesta = await fetch("/crear-link-pago", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json"
