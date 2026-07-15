@@ -77,10 +77,10 @@ app.post("/crear-link-pago", async (req, res) => {
                 single_use: true,
                 collect_shipping: false,
                 currency: "COP",
-                amount_in_cents: monto * 100
-                redirect_url: "https://marvibe.orender.com/pago-exitoso.html"
+                amount_in_cents: monto * 100,
+                redirect_url: "https://marvibe.onrender.com/pago-exitoso.html"
             }
-            {
+            , {
                 headers: {
                     Authorization: `Bearer ${process.env.WOMPI_PRIVATE_KEY}`
                 }
