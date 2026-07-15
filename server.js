@@ -26,8 +26,9 @@ const PORT = process.env.PORT || 3000;
 app.post("/crear-link-pago", async (req, res) => {
     try {
         const { nombre, servicio, monto } = req.body;
+        console.log("WOMPI_PRIVATE_KEY:", process.env.WOMPI_PRIVATE_KEY);
         const respuesta = await axios.post(
-            "https://production.wompi.co/v1/payment_links",
+            "https://sandbox.wompi.co/v1/payment_links",
             {
                 name: `Reserva Mar Vibe - ${nombre}`,
                 description: servicio,
