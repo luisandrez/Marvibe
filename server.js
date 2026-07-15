@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 
 
