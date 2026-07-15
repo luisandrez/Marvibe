@@ -9,7 +9,7 @@ async function reservarYPagar() {
     const respuesta = await fetch("http://localhost:3000/crear-transaccion", {
         method: "POST",
         hearders: {
-            "Content-Type": "application/json"
+            "content-type": "application/json"
         },
         body: JSON.stringify(reserva)
     });
