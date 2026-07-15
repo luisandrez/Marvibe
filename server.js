@@ -6,6 +6,7 @@ require("dotenv").config();
 const app = express();
 
 app.use(express.json());
+app.use(express.static(__dirname))
 app.use(cors())
 app.get("/api", (req, res) => {
     res.json({
@@ -13,7 +14,7 @@ app.get("/api", (req, res) => {
     });
 });
 app.get("/", (req, res) => {
-    res.send("servidor de mar vibe funcionando correctamente.");
+    res.sendFile(__dirname + "/index.html");
 });
 
 const PORT = 3000;
