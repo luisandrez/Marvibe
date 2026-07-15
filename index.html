@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mar Vibe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo" onclick="mostrarPanelAdmin()" style="cursor: pointer;">Mar Vibe</div>
+
+        <ul class="menu">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#seguridad">Seguridad</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#reservas">Reservas</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+
+        </ul>
+        <a href="#servicios" class="btn-reserva">Reservar</a>
+
+
+
+    </nav>
+
+    <header class="hero" id="inicio">
+
+        <img src="images/jetski.jpg" alt="Jetski Mar Vibe">
+
+        <div class="hero-text">
+
+            <h1>Explora Cartagena en Jetski</h1>
+
+            <p>Vive una Experiencia inolvidable sobre el mar</p>
+
+            <a href="#servicios" class="btn-principal">Reserve ahora</a>
+        </div>
+
+    </header>
+
+    <section class="servicios" id="servicios">
+        <div class="contenedor">
+            <h2 class="titulo-seccion">Nuestros Servicios</h2>
+            <p class="subtitulo-seccion">Elige la experiencia perfecta para ti</p>
+
+            <div class="grid-servicios">
+                <div class="card-servicio">
+                    <div class="icon-servicio">🚤</div>
+                    <h3>Renta 30 Minutos</h3>
+                    <p class="duracion">⏱️ 30 minutos</p>
+                    <p class="descripcion">Experimenta la emoción de conducir tu propio jetski. Recorre la bahía de
+                        Cartagena con total libertad.</p>
+                    <p class="precio">$250.000</p>
+                    <button class="btn-servicio"
+                        onclick="document.getElementById('reservas').scrollIntoView({behavior:'smooth'})">
+                        Reservar
+                    </button>
+                </div>
+
+                <div class="card-servicio">
+                    <div class="icon-servicio">🏎️</div>
+                    <h3>Renta 1 Hora</h3>
+                    <p class="duracion">⏱️ 1 hora</p>
+                    <p class="descripcion">Más tiempo, más diversión. Explora playas y paisajes increíbles a tu ritmo.
+                        Ideal para aventureros.</p>
+                    <p class="precio">$480.000</p>
+                    <button class="btn-servicio"
+                        onclick="document.getElementById('reservas').scrollIntoView({behavior:'smooth'})">
+                        Reservar
+                    </button>
+                </div>
+
+                <div class="card-servicio destacado">
+                    <div class="badge">Más Popular</div>
+                    <div class="icon-servicio">⭐</div>
+                    <h3>Tour Tierra Bomba y Bocachica</h3>
+                    <p class="duracion">⏱️ 2 horas</p>
+                    <p class="descripcion">Viaja a la hermosa Isla Tierra Bomba y conoce el histórico Fuerte de
+                        Bocachica. Ruta segura con instructor/guía profesional.</p>
+
+                    <div class="opciones-tour">
+                        <p><strong>Opción 1 (Recomendada):</strong> Instructor/guía en el mismo jetski <br><span
+                                style="color: #00aeef; font-weight: bold;">Incluido en el precio</span></p>
+                        <p><strong>Opción 2:</strong> Ir solo con instructor en jetski adicional <br><span
+                                style="color: #ff6b6b; font-weight: bold;">+ $480.000</span></p>
+                    </div>
+
+                    <p class="precio">$9600.000</p>
+                    <button class="btn-servicio"
+                        onclick="document.getElementById('reservas').scrollIntoView({behavior:'smooth'})">
+                        Reservar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="seguridad" id="seguridad">
+        <div class="contenedor">
+            <h2 class="titulo-seccion">⚠️ Términos de Seguridad Importantes</h2>
+            <p class="subtitulo-seccion">Por favor, lee cuidadosamente antes de tu aventura</p>
+
+            <div class="grid-seguridad">
+                <div class="card-seguridad">
+                    <div class="icon-seguridad">⛔</div>
+                    <h3>No Voltear el Jetski</h3>
+                    <p>Está estrictamente prohibido voltear o voltear boca abajo la embarcación. En caso de hacerlo, el
+                        cliente es responsable de pagar todos los costos de mantenimiento y reparación del daño causado.
+                    </p>
+                    <div class="alerta">Penalización: Cobertura total de mantenimiento</div>
+                </div>
+
+                <div class="card-seguridad">
+                    <div class="icon-seguridad">🏊</div>
+                    <h3>Zona de Bañistas Prohibida</h3>
+                    <p>No está permitido manejar el jetski cerca o dentro de áreas donde hay bañistas. Debes mantener
+                        una distancia segura de al menos 100 metros de las playas y zonas de baño designadas.</p>
+                    <div class="alerta">Riesgo: Accidente grave y responsabilidad civil</div>
+                </div>
+
+                <div class="card-seguridad">
+                    <div class="icon-seguridad">🪨</div>
+                    <h3>Prohibido Cerca de Espolones</h3>
+                    <p>Está absolutamente prohibido acercarse a los espolones y estructuras costeras. El impacto contra
+                        estas estructuras puede causar daños graves al jetski y lesiones personales. Mantén distancia
+                        segura.</p>
+                    <div class="alerta">Riesgo: Daño severo y responsabilidad total del cliente</div>
+                </div>
+
+                <div class="card-seguridad">
+                    <div class="icon-seguridad">💔</div>
+                    <h3>Responsabilidad por Daños</h3>
+                    <p>El cliente es responsable de cualquier daño causado al jetski rentado, incluyendo colisiones con
+                        otros jetskis, objetos flotantes o daño por impacto. Los costos de reparación serán cubiertos
+                        totalmente por el cliente.</p>
+                    <div class="alerta">Penalización: Pago completo de reparaciones</div>
+                </div>
+
+                <div class="card-seguridad">
+                    <div class="icon-seguridad">🎯</div>
+                    <h3>Manejo Responsable</h3>
+                    <p>Debes manejar el jetski de forma responsable, a velocidades moderadas en zonas pobladas. El
+                        incumplimiento de estas normas puede resultar en la cancelación inmediata del servicio sin
+                        reembolso.</p>
+                    <div class="alerta">Obligatorio: Seguimiento de instrucciones del guía</div>
+                </div>
+
+                <div class="card-seguridad">
+                    <div class="icon-seguridad">✅</div>
+                    <h3>Equipo de Seguridad</h3>
+                    <p>Se proporciona chaleco salvavidas obligatorio. Su uso es requerido en todo momento. El cliente
+                        debe conocer cómo ponerse el equipo de seguridad adecuadamente antes de iniciar.</p>
+                    <div class="alerta">Obligatorio: Uso de equipo de seguridad</div>
+                </div>
+            </div>
+
+            <div class="disclaimer">
+                <h3>📋 Renuncia de Responsabilidad</h3>
+                <p>Al reservar y utilizar nuestros servicios de jetski, el cliente reconoce haber leído, comprendido y
+                    aceptado todos estos términos de seguridad. El cliente es responsable de cualquier daño o accidente
+                    que resulte del incumplimiento de estas normas. Mar Vibe se reserva el derecho de rechazar el
+                    servicio a clientes que no cumplan con las medidas de seguridad.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="galeria" id="galeria">
+        <div class="contenedor">
+            <h2 class="titulo-seccion">Nuestra Galería</h2>
+            <p class="subtitulo-seccion">Vive momentos inolvidables con nosotros</p>
+
+            <div class="grid-galeria">
+                <div class="item-galeria">
+                    <img src="images/Aventura en Jetski.jpg" alt="Aventura en Jetski">
+                    <div class="overlay-galeria">
+                        <h3>Aventura en Jetski</h3>
+                        <p>Emoción pura sobre el mar</p>
+                    </div>
+                </div>
+
+                <div class="item-galeria">
+                    <img src="images/Vistas Paradisíacas.jpg" alt="Vistas Paradisíacas">
+                    <div class="overlay-galeria">
+                        <h3>Vistas Paradisíacas</h3>
+                        <p>Panoramas del Caribe</p>
+                    </div>
+                </div>
+
+                <div class="item-galeria">
+                    <img src="images/Isla Tierra Bomba.jpg" alt="Isla Tierra Bomba">
+                    <div class="overlay-galeria">
+                        <h3>Isla Tierra Bomba</h3>
+                        <p>Playas de ensueño</p>
+                    </div>
+                </div>
+
+                <div class="item-galeria">
+                    <img src="images/Fuerte de Bocachica.jpg" alt="Fuerte de Bocachica">
+                    <div class="overlay-galeria">
+                        <h3>Fuerte de Bocachica</h3>
+                        <p>Historia y naturaleza</p>
+                    </div>
+                </div>
+
+                <div class="item-galeria">
+                    <img src="images/Grupo de Amigos.jpg" alt="Grupo de Amigos">
+                    <div class="overlay-galeria">
+                        <h3>Experiencia en Grupo</h3>
+                        <p>Diversión compartida</p>
+                    </div>
+                </div>
+
+                <div class="item-galeria">
+                    <img src="images/Atardecer Caribeño.jpg" alt="Atardecer Caribeño">
+                    <div class="overlay-galeria">
+                        <h3>Atardecer Caribeño</h3>
+                        <p>Los mejores momentos</p>
+                    </div>
+                </div>
+
+                <div class="item-galeria">
+                    <img src="images/Snorkel en el Mar.jpg" alt="Snorkel en el Mar">
+                    <div class="overlay-galeria">
+                        <h3>Snorkel en el Mar</h3>
+                        <p>Explora el mundo marino</p>
+                    </div>
+                </div>
+
+                <div class="item-galeria">
+                    <img src="images/Descanso en la Playa.jpg" alt="Descanso en la Playa">
+                    <div class="overlay-galeria">
+                        <h3>Descanso en la Playa</h3>
+                        <p>Relax y tranquilidad</p>
+                    </div>
+                </div>
+
+                <div class="item-galeria">
+                    <img src="images/Aventura Familiar.jpg" alt="Aventura Familiar">
+                    <div class="overlay-galeria">
+                        <h3>Aventura Familiar</h3>
+                        <p>Recuerdos para siempre</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="reservas" id="reservas">
+        <div class="contenedor">
+            <h2 class="titulo-seccion">📅 Selecciona tu Fecha y Hora</h2>
+            <p class="subtitulo-seccion">Elige el día perfecto para tu aventura</p>
+
+            <div class="contenedor-reservas-cliente">
+                <div class="panel-calendario-cliente">
+                    <div class="header-calendario">
+                        <button class="btn-mes" id="btnAnterior">◀ Anterior</button>
+                        <h3 id="mesActual">Julio 2026</h3>
+                        <button class="btn-mes" id="btnSiguiente">Siguiente ▶</button>
+                    </div>
+
+                    <div class="calendario-grid" id="calendario">
+                        <!-- Se genera con JavaScript -->
+                    </div>
+                </div>
+
+                <div class="panel-agregar-reserva-cliente">
+                    <h3>📋 Completa tu Reserva</h3>
+                    <p class="info-text">Luego de completar los datos, serás redirigido a WhatsApp para confirmar tu
+                        pago</p>
+                    <form id="formReservaCliente" class="form-reserva">
+                        <input type="text" id="nombreCliente" placeholder="Tu nombre completo" required>
+                        <input type="email" id="emailCliente" placeholder="Tu email" required>
+                        <input type="tel" id="telefonoCliente" placeholder="Tu teléfono (57...)" required>
+
+                        <select id="servicio" required>
+                            <option value="">Selecciona un servicio</option>
+                            <option value="Renta 30 Minutos">Renta 30 Minutos - $250.000</option>
+                            <option value="Renta 1 Hora">Renta 1 Hora - $500.000</option>
+                            <option value="Tour Tierra Bomba y Bocachica">Tour Tierra Bomba y Bocachica - $1.000.000
+                            </option>
+                        </select>
+
+                        <input type="date" id="fechaReserva" placeholder="Fecha seleccionada" readonly>
+                        <input type="time" id="horaReserva" required>
+
+                        <textarea id="notasReserva"
+                            placeholder="Notas especiales (opcional - ej: con instructor o sin instructor)"></textarea>
+
+                        <button type="submit" class="btn-agregar-reserva">Pagar & Reservar </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Panel Admin Oculto -->
+            <div id="panelAdminReservas" class="panel-admin-reservas" style="display:none; margin-top: 60px;">
+                <div class="admin-header">
+                    <h3>🔐 Panel de Administración - Reservas</h3>
+                    <button class="btn-cerrar-admin" onclick="cerrarPanelAdmin()">✕ Cerrar</button>
+                </div>
+                <div class="admin-content">
+                    <div id="listaReservasAdmin" class="lista-reservas-admin">
+                        <!-- Se genera con JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contacto" id="contacto">
+        <div class="contenedor">
+            <h2 class="titulo-seccion">¿Listo para la Aventura?</h2>
+            <p class="subtitulo-seccion">Contacta con nosotros y reserva tu experiencia</p>
+
+            <div class="contenedor-contacto">
+                <div class="info-contacto">
+                    <div class="info-item">
+                        <div class="icon-info">📞</div>
+                        <h3>Teléfono</h3>
+                        <p><a href="tel:+573023434203">+57 302 3434 203</a></p>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="icon-info">✉️</div>
+                        <h3>Email</h3>
+                        <p><a href="mailto:info@marvibe.com">info@marvibe.com</a></p>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="icon-info">📍</div>
+                        <h3>Ubicación</h3>
+                        <p>Cartagena, Colombia</p>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="icon-info">🕐</div>
+                        <h3>Horario</h3>
+                        <p>Lun - Dom: 8:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+
+                <div class="formulario-contacto">
+                    <h3>Envíanos un mensaje</h3>
+                    <form class="form">
+                        <input type="text" placeholder="Tu nombre" required>
+                        <input type="email" placeholder="Tu email" required>
+                        <input type="tel" placeholder="Tu teléfono" required>
+                        <textarea placeholder="Tu mensaje" rows="5" required></textarea>
+                        <button type="submit" class="btn-enviar">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="whatsapp-container">
+                <a href="https://wa.me/573023434203" target="_blank" class="btn-whatsapp">
+                    <span class="whatsapp-icon">💬</span>
+                    Contactar por WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Login Admin -->
+    <div id="modalLoginAdmin" class="modal-login-admin" style="display:none;">
+        <div class="modal-contenido">
+            <h2>🔐 Panel de Administrador</h2>
+            <p>Ingresa tu contraseña para continuar</p>
+            <form id="formLoginAdmin" onsubmit="verificarContraseñaAdmin(event)">
+                <input type="password" id="contrasenaAdmin" placeholder="Contraseña" required>
+                <button type="submit" class="btn-login-admin">Entrar</button>
+            </form>
+            <button class="btn-cerrar-modal" onclick="cerrarModalAdmin()">✕ Cancelar</button>
+        </div>
+    </div>
+
+    <script>
+        // Scroll suave para todos los links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // SISTEMA DE RESERVAS Y CALENDARIO (VERSIÓN CLIENTE + ADMIN)
+        let mesActual = new Date();
+        let reservas = JSON.parse(localStorage.getItem('reservasMarvibe')) || [];
+        let fechaSeleccionada = null;
+
+        function generarCalendario() {
+            const calendario = document.getElementById('calendario');
+            const mesActualElement = document.getElementById('mesActual');
+            const año = mesActual.getFullYear();
+            const mes = mesActual.getMonth();
+
+            // Actualizar título
+            const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+            mesActualElement.textContent = `${meses[mes]} ${año}`;
+
+            // Limpiar calendario
+            calendario.innerHTML = '';
+
+            // Días de la semana
+            const diasSemana = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+            diasSemana.forEach(dia => {
+                const divDia = document.createElement('div');
+                divDia.className = 'dia-semana';
+                divDia.textContent = dia;
+                calendario.appendChild(divDia);
+            });
+
+            // Primer día del mes
+            const primerDia = new Date(año, mes, 1).getDay();
+
+            // Espacios vacíos antes del primer día
+            for (let i = 0; i < primerDia; i++) {
+                const divVacio = document.createElement('div');
+                divVacio.className = 'dia-vacio';
+                calendario.appendChild(divVacio);
+            }
+
+            // Días del mes
+            const ultimoDia = new Date(año, mes + 1, 0).getDate();
+            for (let dia = 1; dia <= ultimoDia; dia++) {
+                const divDia = document.createElement('div');
+                divDia.className = 'dia-numero';
+
+
+                const fechaStr = `${año}-${String(mes + 1).padStart(2, '0')}-${String(dia).padStart(2, '0')}`;
+
+                divDia.innerHTML = `<span class="numero">${dia}</span>`;
+
+                // Resaltar día seleccionado
+                if (fechaSeleccionada === fechaStr) {
+                    divDia.style.background = '#ff6b6b';
+                    divDia.style.color = 'white';
+                }
+
+                divDia.addEventListener('click', () => seleccionarFecha(fechaStr, divDia));
+                calendario.appendChild(divDia);
+            }
+        }
+
+        function seleccionarFecha(fecha, elemento) {
+            fechaSeleccionada = fecha;
+            document.getElementById('fechaReserva').value = fecha;
+
+            // Limpiar resaltado anterior
+            document.querySelectorAll('.dia-numero').forEach(el => {
+                if (el.style.background === 'rgb(255, 107, 107)') {
+                    el.style.background = '';
+                    el.style.color = '';
+                }
+            });
+
+            // Resaltar nuevo día
+            elemento.style.background = '#ff6b6b';
+            elemento.style.color = 'white';
+        }
+
+        async function enviarReservaWhatsapp(e) {
+            e.preventDefault();
+
+            const nombre = document.getElementById("nombreCliente").value;
+            const email = document.getElementById("emailCliente").value;
+            const telefono = document.getElementById("telefonoCliente").value;
+            const servicio = document.getElementById("servicio").value;
+            const fecha = document.getElementById("fechaReserva").value;
+            const hora = document.getElementById("horaReserva").value;
+            const notas = document.getElementById("notasReserva").value;
+
+            if (!nombre || !email || !telefono || !servicio || !fecha || !hora) {
+                alert("completa todos los campos.");
+                return;
+            }
+
+            const precios = {
+                "Renta 30 Minutos": 250000,
+                "Renta 1 Hora": 480000,
+                "Tour Tierra Bomba y Bocachica": 960000
+
+            };
+
+            const respuesta = await fetch("http://localhost:3000/crear-link-pago", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nombre,
+                    servicio,
+                    monto: precios[servicio]
+                })
+            });
+
+            const datos = await respuesta.json();
+            if (!datos.ok) {
+                alert("No fue posible crear el enlace de pago.");
+                return;
+            }
+            const reserva = {
+                nombre,
+                email,
+                telefono,
+                servicio,
+                fecha,
+                hora,
+                notas,
+                estado: "pendiente"
+
+            };
+            reservas.push(reserva);
+            localStorage.setItem("reservasMarvibe", JSON.stringify(reservas));
+
+            document.getElementById("formReservaCliente").reset();
+            document.getElementById("fechaReserva").value = "";
+            fechaSeleccionada = null
+            generarCalendario();
+            window.location.href = datos.url;
+        }
+
+        function mostrarPanelAdmin() {
+            document.getElementById('modalLoginAdmin').style.display = 'flex';
+            document.getElementById('contrasenaAdmin').focus();
+        }
+
+        function cerrarModalAdmin() {
+            document.getElementById('modalLoginAdmin').style.display = 'none';
+            document.getElementById('contrasenaAdmin').value = '';
+        }
+
+        function verificarContraseñaAdmin(event) {
+            event.preventDefault();
+            const contraseña = document.getElementById('contrasenaAdmin').value;
+
+            if (contraseña === '1234') {
+                document.getElementById('panelAdminReservas').style.display = 'block';
+                actualizarListaReservasAdmin();
+                cerrarModalAdmin();
+            } else {
+                alert('❌ Contraseña incorrecta');
+                document.getElementById('contrasenaAdmin').value = '';
+            }
+        }
+
+        function cerrarPanelAdmin() {
+            document.getElementById('panelAdminReservas').style.display = 'none';
+        }
+
+        function actualizarListaReservasAdmin() {
+            const listaAdmin = document.getElementById('listaReservasAdmin');
+
+            if (reservas.length === 0) {
+                listaAdmin.innerHTML = '<p style="color: #999; text-align: center;">No hay reservas aún</p>';
+                return;
+            }
+
+            let html = '<div class="tabla-reservas">';
+            reservas.forEach((reserva, index) => {
+                html += `
+                    <div class="reserva-admin-item">
+                        <div class="info-reserva">
+                            <strong>${reserva.nombre}</strong> - ${reserva.fecha} ${reserva.hora}
+                            <p style="font-size: 12px; color: #666;">Servicio: ${reserva.servicio} | Tel: ${reserva.telefono}</p>
+                            ${reserva.notas ? `<p style="font-size: 12px; color: #888; font-style: italic;">Notas: ${reserva.notas}</p>` : ''}
+                        </div>
+                        <button class="btn-eliminar-admin" onclick="eliminarReservaAdmin(${index})">Eliminar</button>
+                    </div>
+                `;
+            });
+            html += '</div>';
+
+            listaAdmin.innerHTML = html;
+        }
+
+        function eliminarReservaAdmin(index) {
+            if (confirm('¿Estás seguro de que deseas eliminar esta reserva?')) {
+                reservas.splice(index, 1);
+                localStorage.setItem('reservasMarvibe', JSON.stringify(reservas));
+                actualizarListaReservasAdmin();
+                alert('✅ Reserva eliminada');
+            }
+        }
+
+        // Event listeners
+        document.getElementById('btnAnterior').addEventListener('click', () => {
+            mesActual.setMonth(mesActual.getMonth() - 1);
+            generarCalendario();
+        });
+
+        document.getElementById('btnSiguiente').addEventListener('click', () => {
+            mesActual.setMonth(mesActual.getMonth() + 1);
+            generarCalendario();
+        });
+
+        document.getElementById('formReservaCliente').addEventListener('submit', enviarReservaWhatsapp);
+
+        // Acceso al panel admin (presionar 3 veces en el logo)
+        let clickCount = 0;
+        document.querySelector('.logo').addEventListener('click', () => {
+            clickCount++;
+            if (clickCount === 3) {
+                mostrarPanelAdmin();
+                clickCount = 0;
+            }
+            setTimeout(() => { clickCount = 0; }, 1000);
+        });
+
+        async function crearPago(servicio, monto) {
+            const nombre = prompt("nombre completo:");
+            if (!nombre) return;
+            const respuesta = await fetch("http:localhost:3000/crear-link-pago", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nombre,
+                    servicio,
+                    monto,
+                })
+
+            });
+            const datos = await respuesta.json();
+            if (datos.ok) {
+                window.location.href = datos.url;
+            } else {
+                alert("No se pudo Crear el link de pago");
+            }
+        }
+
+        generarCalendario();
+    </script>
+
+</body>
+
+</html>
