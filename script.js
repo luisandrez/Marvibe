@@ -6,7 +6,7 @@ async function reservarYPagar() {
         monto: 200000
     };
 
-    const respuesta = await fetch("http://localhost:3000/crear-transaccion", {
+    const respuesta = await fetch("crear-transaccion", {
         method: "POST",
         hearders: {
             "content-type": "application/json"
