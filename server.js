@@ -1,8 +1,19 @@
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
+const { createClient } = require("@supabase/supabase-js");
 require("dotenv").config();
+const supabase = createClient(
+    process.env.SUPABASE_URL,
+    process.env.SUPABASE_SERVICE_ROLE_KEY
+);
 
+console.log("SUPABASE_URL:", process.env.SUPABASE_URL)
+console.log(
+    "SERVICE KEY:",
+    process.env.SUPABASE_SERVICE_ROLE_KEY ? "CARGADA" : "NO CARGADA"
+
+);
 const app = express();
 
 app.use(express.json());
@@ -25,7 +36,38 @@ const PORT = process.env.PORT || 3000;
 
 app.post("/crear-link-pago", async (req, res) => {
     try {
-        const { nombre, servicio, monto } = req.body;
+        const {
+            nombre,
+            email,
+            telefono,
+            servicio,
+            fecha,
+            hora,
+            notas,
+            monto,
+        } = req.body;
+        const { error } = await supabase
+            .from("reservas")
+            .insert([
+                {
+                    nombre,
+                    email,
+                    telefono,
+                    servicio,
+                    fecha,
+                    hora,
+                    notas,
+                    estado: "pendiente"
+
+                }
+            ]);
+        if (error) {
+            console.log("ERROR SUPBASE:", JSON.stringify(error, null, 2));
+            return res.status(500).json({
+                ok: false,
+                error
+            });
+        }
         console.log("WOMPI_PRIVATE_KEY:", process.env.WOMPI_PRIVATE_KEY);
         const respuesta = await axios.post(
             "https://sandbox.wompi.co/v1/payment_links",
