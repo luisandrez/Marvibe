@@ -100,7 +100,7 @@ app.post("/crear-link-pago", async (req, res) => {
         });
     }
 });
-app.post("webhook/wompi", async (req, res) => {
+app.post("/webhook/wompi", async (req, res) => {
     try {
         console.log("webhook recibido:");
         console.log(JSON.stringify(req.body, null, 2));
@@ -112,6 +112,9 @@ app.post("webhook/wompi", async (req, res) => {
         res.status(500).send("ERROR");
     }
 
+});
+app.get("/webhook/wompi", (req, res) => {
+    res.send("/Webhook funcionando");
 });
 
 app.listen(PORT, () => {
