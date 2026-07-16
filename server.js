@@ -99,12 +99,23 @@ app.post("/crear-link-pago", async (req, res) => {
             }
         );
 
+        const paymentLinkId = respuesta.data.data.id;
 
-        const id = respuesta.data.data.id;
+        await supabase
+            .from("reservas")
+            .update({
+                payment_link_id: paymentLinkId
+            })
+            .eq("id", reserva.id);
         res.json({
             ok: true,
-            url: `https://checkout.wompi.co/l/${id}`
+            url: `https://checkout.wompi.co/l/${paymentLinkId}`
         });
+
+
+
+
+
     } catch (error) {
         console.log(error.response?.data || error.message);
 
@@ -128,6 +139,7 @@ app.post("/webhook/wompi", async (req, res) => {
 
     }
     console.log("Referancia recibida:", transaccion.reference);
+    console.log("Payment Link ID:", transaccion.payment_link_id);
     console.log("Estado", transaccion.status);
 
     if (transaccion.status === "APPROVED") {
@@ -138,7 +150,7 @@ app.post("/webhook/wompi", async (req, res) => {
                 transaction_id: transaccion.id
 
             })
-            .eq("referencia_pago", transaccion.reference)
+            .eq("payment_link_id", transaccion.payment_link_id)
             .select();
         if (error) {
             console.log("Error actualizando reserva:", error);
