@@ -101,16 +101,13 @@ app.post("/crear-link-pago", async (req, res) => {
     }
 });
 app.post("/webhook/wompi", async (req, res) => {
-    try {
-        console.log("webhook recibido:");
-        console.log(JSON.stringify(req.body, null, 2));
 
-        res.status(200).send("OK");
+    console.log("=====WEBHOOK=====");
+    console.log("Headers:", req.headers);
+    console.log("Body:", req.body);
 
-    } catch (error) {
-        console.error(error);
-        res.status(500).send("ERROR");
-    }
+
+    res.sendStatus(200);
 
 });
 app.get("/webhook/wompi", (req, res) => {
