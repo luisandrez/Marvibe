@@ -144,7 +144,8 @@ app.post("/webhook/wompi", async (req, res) => {
                 estado: "pagado",
                 estado_pago: "pagado",
                 transaction_id: transaction.id,
-                fecha_pago: new Date().toISOString()
+                fecha_pago: new Date().toISOString(),
+                referencia_pago: transaction.reference
 
             })
             .eq("payment_link_id", transaction.payment_link_id)
