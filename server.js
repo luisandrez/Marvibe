@@ -100,6 +100,19 @@ app.post("/crear-link-pago", async (req, res) => {
         });
     }
 });
+app.post("webhook/wompi", async (req, res) => {
+    try {
+        console.log("webhook recibido:");
+        console.log(JSON.stringify(req.body, null, 2));
+
+        res.status(200).send("OK");
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("ERROR");
+    }
+
+});
 
 app.listen(PORT, () => {
     console.log(`Servidor iniciando en http://localhost:${PORT}`);
