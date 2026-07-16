@@ -73,12 +73,7 @@ app.post("/crear-link-pago", async (req, res) => {
         }
 
         const referencia = `RESERVA_${reserva.id}`;
-        await supabase
-            .from("reservas")
-            .update({
-                referencia_pago: referencia
-            })
-            .eq("id", reserva.id);
+
         console.log("WOMPI_PRIVATE_KEY:", process.env.WOMPI_PRIVATE_KEY);
         const respuesta = await axios.post(
             "https://sandbox.wompi.co/v1/payment_links",
@@ -131,26 +126,28 @@ app.post("/webhook/wompi", async (req, res) => {
     console.log(req.body);
 
 
-    const transaccion = req.body?.data?.transaction;
+    const transaction = req.body?.data?.transaction;
 
-    if (!transaccion) {
-        console.log("No llego informacion de la transsacion");
+    if (!transaction) {
+        console.log("No llego informacion de la transsation");
         return res.sendStatus(200);
 
     }
-    console.log("Referancia recibida:", transaccion.reference);
-    console.log("Payment Link ID:", transaccion.payment_link_id);
-    console.log("Estado", transaccion.status);
+    console.log("Referancia recibida:", transaction.reference);
+    console.log("Payment Link ID:", transaction.payment_link_id);
+    console.log("Estado", transaction.status);
 
-    if (transaccion.status === "APPROVED") {
+    if (transaction.status === "APPROVED") {
         const { data, error } = await supabase
             .from("reservas")
             .update({
                 estado: "pagado",
-                transaction_id: transaccion.id
+                estado_pago: "pagado",
+                transaction_id: transaction.id,
+                fecha_pago: new Date().toISOString()
 
             })
-            .eq("payment_link_id", transaccion.payment_link_id)
+            .eq("payment_link_id", transaction.payment_link_id)
             .select();
         if (error) {
             console.log("Error actualizando reserva:", error);
