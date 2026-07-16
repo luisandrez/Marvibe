@@ -46,7 +46,7 @@ app.post("/crear-link-pago", async (req, res) => {
             notas,
             monto,
         } = req.body;
-        const { error } = await supabase
+        const { data: reserva, error } = await supabase
             .from("reservas")
             .insert([
                 {
@@ -60,7 +60,10 @@ app.post("/crear-link-pago", async (req, res) => {
                     estado: "pendiente"
 
                 }
-            ]);
+            ])
+            .select()
+            .single();
+
         if (error) {
             console.log("ERROR SUPBASE:", JSON.stringify(error, null, 2));
             return res.status(500).json({
@@ -68,24 +71,35 @@ app.post("/crear-link-pago", async (req, res) => {
                 error
             });
         }
+
+        const referencia = `RESERVA_${reserva.id}`;
+        await supabase
+            .from("reservas")
+            .update({
+                referencia_pago: referencia
+            })
+            .eq("id", reserva.id);
         console.log("WOMPI_PRIVATE_KEY:", process.env.WOMPI_PRIVATE_KEY);
         const respuesta = await axios.post(
             "https://sandbox.wompi.co/v1/payment_links",
             {
                 name: `Reserva Mar Vibe - ${nombre}`,
                 description: servicio,
+                reference: referencia,
                 single_use: true,
                 collect_shipping: false,
                 currency: "COP",
                 amount_in_cents: monto * 100,
                 redirect_url: "https://marvibe.onrender.com/pago-exitoso.html"
-            }
-            , {
+            },
+            {
                 headers: {
                     Authorization: `Bearer ${process.env.WOMPI_PRIVATE_KEY}`
                 }
             }
         );
+
+
         const id = respuesta.data.data.id;
         res.json({
             ok: true,
@@ -103,12 +117,39 @@ app.post("/crear-link-pago", async (req, res) => {
 app.post("/webhook/wompi", async (req, res) => {
 
     console.log("=====WEBHOOK=====");
-    console.log("Headers:", req.headers);
-    console.log("Body:", req.body);
+    console.log(req.body);
 
 
-    res.sendStatus(200);
+    const transaccion = req.body?.data?.transaction;
 
+    if (!transaccion) {
+        console.log("No llego informacion de la transsacion");
+        return res.sendStatus(200);
+
+    }
+    console.log("Referancia recibida:", transaccion.reference);
+    console.log("Estado", transaccion.status);
+
+    if (transaccion.status === "APPROVED") {
+        const { data, error } = await supabase
+            .from("reservas")
+            .update({
+                estado: "pagado",
+                transaction_id: transaccion.id
+
+            })
+            .eq("referencia_pago", transaccion.reference)
+            .select();
+        if (error) {
+            console.log("Error actualizando reserva:", error);
+
+        } else {
+            console.log("Reserva actualizada correctamente");
+            console.log("Resultado", data);
+        }
+    }
+
+    res.sendStatus(200)
 });
 app.get("/webhook/wompi", (req, res) => {
     res.send("/Webhook funcionando");
