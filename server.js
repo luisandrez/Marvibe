@@ -56,15 +56,6 @@ function crearVoucher(reserva) {
             width: 120
         });
 
-        doc.fillColor("#EAF7FB")
-            .fontSize(9)
-            .text(
-                "Adventure ~ luxury ~ Caribbean Experience",
-                170,
-                84
-            );
-
-
         doc.fillColor("white")
             .fontSize(26)
             .text("MAR VIBE", 170, 22);
@@ -73,29 +64,19 @@ function crearVoucher(reserva) {
             .fill("#0B6E99");
 
         doc.fillColor("white")
-            .fontSize(12)
-            .text("Jet Ski Experience - Cartagena", 175, 312);
-
-        doc.fillColor("white")
             .fontSize(10)
             .text("Premium water Sports", 170, 72);
 
-        doc.image("images/jetski2.jpg", 30, 110, {
-            width: 535,
-            height: 160
-        });
 
+        doc.fillColor("#EAF7FB")
+            .fontSize(9)
+            .text(
+                "Adventure ~ luxury ~ Caribbean Experience",
+                170,
+                75
+            );
 
-        doc.opacity(0.08);
-        doc.image("images/logo.png", 120, 330, {
-            width: 350
-
-        });
-
-        doc.opacity(1);
-
-
-        doc.fillColor("white")
+         doc.fillColor("white")
             .fontSize(22)
             .font("Helvetica-Bold")
             .text("¡Tu aventura comienza aqui!", 45, 125);
@@ -104,6 +85,31 @@ function crearVoucher(reserva) {
             .font("Helvetica")
             .text("Voucher oficial de reserva - Mar Vibe Cartagena", 45, 155);
 
+
+            
+
+        doc.fillColor("white")
+            .fontSize(12)
+            .text("Jet Ski Experience - Cartagena", 175, 312);
+
+        
+        doc.image("images/jetski2.jpg", 30, 110, {
+            width: 535,
+            height: 160
+        });
+
+
+       
+
+         
+          
+        doc.opacity(0.08);
+        doc.image("images/logo.png", 120, 330, {
+            width: 350
+
+        });
+
+        doc.opacity(1);
 
         doc.rect(30, 300, 535, 8)
             .fill("#00A8D8");
@@ -118,7 +124,7 @@ function crearVoucher(reserva) {
 
         doc.fillColor("#0B6E99")
             .fontSize(16)
-            .text("📍 Punto de encuentro", 40, 320);
+            .text("📍 Punto de encuentro", 40, 345);
 
         doc.fillColor("#555555")
             .fontSize(11)
@@ -135,11 +141,11 @@ function crearVoucher(reserva) {
 
         doc.fillColor("black")
             .fontSize(12)
-            .text("📍Playa El Laguito Cartagena de Indias", 40, 345);
+            .text("Playa El Laguito Cartagena de Indias", 40, 360);
 
-        doc.text("Cartagena, Colombia", 40, 365);
+        doc.text("Cartagena, Colombia", 40, 375);
 
-        doc.image("images/qr-googlemaps.png", 450, 330, {
+        doc.image("images/qr-googlemaps.png", 450, 540, {
             width: 90
         });
 
@@ -353,12 +359,12 @@ async function subirVoucher(archivo) {
         });
     if (error) throw error;
 
-    const { data } =supabase.storage
+    const { data } = supabase.storage
         .from("vouchers")
         .getPublicUrl(nombreArchivo)
-    
+
     return data.publicUrl
-  
+
 }
 
 app.use(express.json());
