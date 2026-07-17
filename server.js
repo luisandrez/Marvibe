@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
 const nodemailer = require("nodemailer");
+const path = require("path");
 const PDFDocument = require("pdfkit");
 const fs = require("fs");
 const { createClient } = require("@supabase/supabase-js");
@@ -340,6 +341,26 @@ async function enviarVoucher(email, archivo) {
     });
 }
 
+async function subirVOucher(archivo) {
+    const nombreArchivo = path.basename(archivo);
+
+    const { error } = await supabase.storage
+        .from("vouchers")
+        .upload(nombreArchivo, fs.createReadStream(archivo), {
+            contentType: "application/pdf",
+            upsert; true
+
+        });
+    if (error) throw error;
+
+    const { data } =supabase.storage
+        .from("vouchers")
+        .getPubliUrl(nombreArchivo)
+    
+    return data.publicUrl
+  
+}
+
 app.use(express.json());
 app.use(express.static(__dirname))
 app.use(cors())
@@ -483,6 +504,15 @@ app.post("/webhook/wompi", async (req, res) => {
 
             const reserva = data[0];
             const voucher = await crearVoucher(reserva);
+            const urlVoucher = await subirVoucher(voucher);
+            await supabase
+                .from("reservas")
+                .update({
+                    voucher_url: urlVoucher
+                })
+                .eq("id", reserca.id);
+            console.log("Voucher:", urlVoucher);
+
             try {
                 await enviarVoucher(reserva.email, voucher);
                 console.log("Voucher enviado correctamente");
