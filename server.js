@@ -321,6 +321,7 @@ function crearVoucher(reserva) {
         stream.on("finish", () => resolve(archivo));
         stream.on("error", reject);
     });
+}
 
 async function enviarVoucher(email, archivo) {
     await transporter.sendMail({
@@ -335,8 +336,6 @@ async function enviarVoucher(email, archivo) {
             }
         ]
     });
-}
-
 }
 
 app.use(express.json());
@@ -486,7 +485,7 @@ app.post("/webhook/wompi", async (req, res) => {
                 await enviarVoucher(reserva.email, voucher);
                  console.log("Voucher enviado correctamente");
             }catch (err) {
-                console.error("Error enviado el correo:", err);
+                console.error("Error enviado el correo:", err );
             }
             
            
