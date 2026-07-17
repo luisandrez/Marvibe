@@ -52,29 +52,35 @@ function crearVoucher(reserva) {
         doc.rect(0, 45, 595, 45)
             .fill("#00A8D8")
 
-        doc.image("images/logo.png", 30, 15, {
-            width: 120
+        doc.image("images/logo.png", 30, 12, {
+            width: 95
         });
 
         doc.fillColor("white")
-            .fontSize(26)
-            .text("MAR VIBE", 170, 22);
-
-        doc.rect(30, 305, 535, 28)
-            .fill("#0B6E99");
+            .fontSize(28)
+            .text("MAR VIBE", 145, 18);
 
         doc.fillColor("white")
             .fontSize(10)
-            .text("Premium water Sports", 170, 72);
-
+            .font("Helvetica")
+            .text("Premium water Sports", 170, 58);
 
         doc.fillColor("#EAF7FB")
             .fontSize(9)
             .text(
                 "Adventure ~ luxury ~ Caribbean Experience",
-                170,
-                75
+                145,
+                68
             );
+
+        
+
+        doc.rect(30, 290, 535, 35)
+            .fill("#0B6E99");
+
+        
+
+       
 
          doc.fillColor("white")
             .fontSize(22)
@@ -90,12 +96,13 @@ function crearVoucher(reserva) {
 
         doc.fillColor("white")
             .fontSize(12)
-            .text("Jet Ski Experience - Cartagena", 175, 312);
+            .font("Helvetica-Bold")
+            .text("Jet Ski Experience - Cartagena", 145, 291);
 
         
-        doc.image("images/jetski2.jpg", 30, 110, {
+        doc.image("images/jetski2.jpg", 30, 90, {
             width: 535,
-            height: 160
+            height: 190
         });
 
 
@@ -124,7 +131,7 @@ function crearVoucher(reserva) {
 
         doc.fillColor("#0B6E99")
             .fontSize(16)
-            .text("📍 Punto de encuentro", 40, 345);
+            .text("PUNTO DE ENCUENTRO", 40, 360);
 
         doc.fillColor("#555555")
             .fontSize(11)
@@ -141,12 +148,12 @@ function crearVoucher(reserva) {
 
         doc.fillColor("black")
             .fontSize(12)
-            .text("Playa El Laguito Cartagena de Indias", 40, 360);
+            .text("Playa El Laguito Cartagena de Indias", 40, 382);
 
-        doc.text("Cartagena, Colombia", 40, 375);
+        doc.text("Cartagena, Colombia", 40, 398);
 
-        doc.image("images/qr-googlemaps.png", 450, 540, {
-            width: 90
+        doc.image("images/qr-googlemaps.png", 445, 350, {
+            width: 80
         });
 
         doc.fontSize(8)
@@ -164,13 +171,13 @@ function crearVoucher(reserva) {
             .stroke("#cccccc");
 
 
-        doc.roundedRect(30, 300, 535, 430, 12)
+        doc.roundedRect(30, 320, 535, 400, 12)
             .lineWidth(2)
             .stroke("#0B6E99");
 
         doc.fillColor("#0B6E99")
             .fontSize(22)
-            .text("VOUCHER DE RESERVA", 50, 315);
+            .text("VOUCHER DE RESERVA", 50, 330);
 
         doc.moveTo(50, 372)
             .lineTo(300, 372)
@@ -181,14 +188,14 @@ function crearVoucher(reserva) {
 
         doc.fillColor("#0AA84F")
             .fontSize(16)
-            .text("RESERVA CONFIRMADA", 360, 340);
+            .text("RESERVA CONFIRMADA", 360, 370);
 
         doc.fillColor("#555555")
             .fontSize(11)
             .text(
                 "Estamos felices de recibirte. Gracias por elegir Mar Vibe",
                 320,
-                365,
+                395,
                 {
                     width: 210,
                     align: "center"
@@ -197,28 +204,28 @@ function crearVoucher(reserva) {
 
         doc.fillColor("#0B6E99")
             .fontSize(15)
-            .text("DATOS DEL CLIENTE", 50, 430),
+            .text("DATOS DEL CLIENTE", 50, 470),
 
             doc.fillColor("black")
                 .fontSize(12);
-        doc.text(`Nombre: ${reserva.nombre}`, 50, 455);
-        doc.text(`Correo: ${reserva.email}`, 50, 480);
-        doc.text(`Telefono: ${reserva.telefono}`, 50, 505);
+        doc.text(`Nombre: ${reserva.nombre}`, 50, 495);
+        doc.text(`Correo: ${reserva.email}`, 50, 520);
+        doc.text(`Telefono: ${reserva.telefono}`, 50, 545);
 
         doc.fillColor("#0B6E99")
             .fontSize(15)
-            .text("DETALLES DE LA RESERVA", 320, 430);
+            .text("DETALLES DE LA RESERVA", 320, 470);
 
         doc.fillColor("black")
             .fontSize(12);
 
-        doc.text(`Servicio: ${reserva.servicio}`, 320, 455);
-        doc.text(`Fecha: ${reserva.fecha}`, 320, 580);
-        doc.text(`Hora: ${reserva.hora}`, 320, 505);
+        doc.text(`Servicio: ${reserva.servicio}`, 320, 495);
+        doc.text(`Fecha: ${reserva.fecha}`, 320, 520);
+        doc.text(`Hora: ${reserva.hora}`, 320, 545);
         doc.fillColor("#0AA84F")
-            .text("Estado: PAGADO", 320, 530);
+            .text("Estado: PAGADO", 320, 570);
         doc.fillColor("black");
-        doc.text(`Referencia: ${reserva.referencia_pago}`, 320, 555);
+        doc.text(`Referencia: ${reserva.referencia_pago}`, 320, 595);
 
         doc.fillColor("#0B6E99")
             .fontSize(13)
@@ -233,37 +240,37 @@ function crearVoucher(reserva) {
             .text(
                 `Emitido: ${new Date().toLocaleDateString("es-CO")}`,
                 50,
-                665
+                660
             );
 
         doc.rect(40, 665, 515, 5)
             .fill("#0B6E99");
 
-        doc.roundedRect(40, 600, 515, 120, 8)
+        doc.roundedRect(40, 680, 515, 105, 8)
             .fillAndStroke("#F5F9FC", "#0B6E99");
 
         doc.fillColor("#0B6E99")
             .fontSize(14)
-            .text("INFORMACION IMPORTANTE", 55, 690);
+            .text("INFORMACION IMPORTANTE", 55, 710);
 
         doc.fillColor("black")
             .fontSize(10);
 
 
-        doc.text("~ Presenta este voucher al llegar.", 60, 715);
-        doc.text("~ Llega 15 minutos antes de la hora reservada.", 60, 730);
-        doc.text("~ Lleva un documento de identidad.", 60, 745);
-        doc.text("~ Usa el chaleco salvavidas durante toda la actividad.", 60, 760);
+        doc.text("~ Presenta este voucher al llegar.", 60, 735);
+        doc.text("~ Llega 15 minutos antes de la hora reservada.", 60, 750);
+        doc.text("~ Lleva un documento de identidad.", 60, 765);
+        doc.text("~ Usa el chaleco salvavidas durante toda la actividad.", 60, 780);
 
         doc.fillColor("#0B6E99")
             .fontSize(13)
-            .text(" Mar Vibe", 50, 785);
+            .text(" Mar Vibe", 50, 790);
 
         doc.fillColor("black")
             .fontSize(10);
 
-        doc.text("WhatsApp: +57 302 343 4203", 50, 805);
-        doc.text("Cartagena- Colombia", 50, 820);
+        doc.text("WhatsApp: +57 302 343 4203", 50, 810);
+        doc.text("Cartagena- Colombia", 50, 825);
         doc.text("Email: 1vibemar0@gmail.com", 50, 835);
         doc.text("https://marvibe.onrender.com", 50, 850);
         doc.text("Instagram: @1marvibe0", 50, 865);
@@ -274,10 +281,7 @@ function crearVoucher(reserva) {
 
 
 
-        doc.moveTo(30, 740)
-            .lineTo(565, 740)
-            .stroke("#0B6E99")
-
+      
         doc.fillColor("gray")
             .fontSize(10)
             .text(
@@ -286,7 +290,7 @@ function crearVoucher(reserva) {
                 750
             );
 
-        doc.image("images/qr-whatsapp.png", 440, 690, {
+        doc.image("images/qr-whatsapp.png", 450, 695, {
             width: 70
         });
 
