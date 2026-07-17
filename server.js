@@ -80,9 +80,9 @@ function crearVoucher(reserva) {
             .fontSize(10)
             .text("Premium water Sports", 170, 72);
 
-        doc.image("images/jetski.jpg", 30, 110, {
+        doc.image("images/jetski2.jpg", 30, 110, {
             width: 535,
-            height: 190
+            height: 160
         });
 
 
@@ -139,7 +139,7 @@ function crearVoucher(reserva) {
 
         doc.text("Cartagena, Colombia", 40, 365);
 
-        doc.image("images/qr-googlemaps.png", 440, 315, {
+        doc.image("images/qr-googlemaps.png", 450, 330, {
             width: 90
         });
 
@@ -158,13 +158,13 @@ function crearVoucher(reserva) {
             .stroke("#cccccc");
 
 
-        doc.roundedRect(30, 330, 535, 370, 12)
+        doc.roundedRect(30, 300, 535, 430, 12)
             .lineWidth(2)
             .stroke("#0B6E99");
 
         doc.fillColor("#0B6E99")
             .fontSize(22)
-            .text("VOUCHER DE RESERVA", 50, 340);
+            .text("VOUCHER DE RESERVA", 50, 315);
 
         doc.moveTo(50, 372)
             .lineTo(300, 372)
@@ -191,28 +191,28 @@ function crearVoucher(reserva) {
 
         doc.fillColor("#0B6E99")
             .fontSize(15)
-            .text("DATOS DEL CLIENTE", 50, 490),
+            .text("DATOS DEL CLIENTE", 50, 430),
 
             doc.fillColor("black")
                 .fontSize(12);
-        doc.text(`👤Nombre: ${reserva.nombre}`, 50, 520);
-        doc.text(`📧Correo: ${reserva.email}`, 50, 545);
-        doc.text(`📲Telefono: ${reserva.telefono}`, 50, 570);
+        doc.text(`Nombre: ${reserva.nombre}`, 50, 455);
+        doc.text(`Correo: ${reserva.email}`, 50, 480);
+        doc.text(`Telefono: ${reserva.telefono}`, 50, 505);
 
         doc.fillColor("#0B6E99")
             .fontSize(15)
-            .text("DETALLES DE LA RESERVA", 320, 490);
+            .text("DETALLES DE LA RESERVA", 320, 430);
 
         doc.fillColor("black")
             .fontSize(12);
 
-        doc.text(`🌊Servicio: ${reserva.servicio}`, 320, 520);
-        doc.text(`📅Fecha: ${reserva.fecha}`, 320, 545);
-        doc.text(`🕛Hora: ${reserva.hora}`, 320, 570);
+        doc.text(`Servicio: ${reserva.servicio}`, 320, 455);
+        doc.text(`Fecha: ${reserva.fecha}`, 320, 580);
+        doc.text(`Hora: ${reserva.hora}`, 320, 505);
         doc.fillColor("#0AA84F")
-            .text("Estado: PAGADO", 320, 595);
+            .text("Estado: PAGADO", 320, 530);
         doc.fillColor("black");
-        doc.text(`🎫Referencia: ${reserva.referencia_pago}`, 320, 620);
+        doc.text(`Referencia: ${reserva.referencia_pago}`, 320, 555);
 
         doc.fillColor("#0B6E99")
             .fontSize(13)
@@ -233,7 +233,7 @@ function crearVoucher(reserva) {
         doc.rect(40, 665, 515, 5)
             .fill("#0B6E99");
 
-        doc.roundedRect(40, 675, 515, 90, 8)
+        doc.roundedRect(40, 600, 515, 120, 8)
             .fillAndStroke("#F5F9FC", "#0B6E99");
 
         doc.fillColor("#0B6E99")
@@ -535,5 +535,6 @@ app.get("/webhook/wompi", (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor iniciando en http://localhost:${PORT}`);
 });
+
 
 
