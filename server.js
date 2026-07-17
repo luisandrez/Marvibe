@@ -341,12 +341,12 @@ async function enviarVoucher(email, archivo) {
     });
 }
 
-async function subirVOucher(archivo) {
+async function subirVoucher(archivo) {
     const nombreArchivo = path.basename(archivo);
 
     const { error } = await supabase.storage
         .from("vouchers")
-        .upload(nombreArchivo, fs.createReadStream(archivo), {
+        .upload(nombreArchivo, fs.readFileSync(archivo), {
             contentType: "application/pdf",
             upsert: true
 
@@ -355,7 +355,7 @@ async function subirVOucher(archivo) {
 
     const { data } =supabase.storage
         .from("vouchers")
-        .getPubliUrl(nombreArchivo)
+        .getPublicUrl(nombreArchivo)
     
     return data.publicUrl
   
@@ -510,7 +510,7 @@ app.post("/webhook/wompi", async (req, res) => {
                 .update({
                     voucher_url: urlVoucher
                 })
-                .eq("id", reserca.id);
+                .eq("id", reserva.id);
             console.log("Voucher:", urlVoucher);
 
             try {
