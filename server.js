@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
+const nodemailer = require("nodemailer");
 const PDFDocument = require("pdfkit");
 const fs = require("fs");
 const { createClient } = require("@supabase/supabase-js");
@@ -12,6 +13,14 @@ const supabase = createClient(
     process.env.SUPABASE_URL,
     process.env.SUPABASE_SERVICE_ROLE_KEY
 );
+
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    }
+});
 
 console.log("SUPABASE_URL:", process.env.SUPABASE_URL)
 console.log(
@@ -312,6 +321,22 @@ function crearVoucher(reserva) {
         stream.on("finish", () => resolve(archivo));
         stream.on("error", reject);
     });
+
+async function enviarVoucher(email, archivo) {
+    await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: "Tu reserva en Mar vibe esta confirmada",
+        text: "Gracias por reservar con Mar Vibe. adjuntamos tu voucher de reserva",
+        attachments: [
+            {
+                filename: "Voucher-Marvibe.pdf",
+                path: archivo
+            }
+        ]
+    });
+}
+
 }
 
 app.use(express.json());
@@ -457,6 +482,14 @@ app.post("/webhook/wompi", async (req, res) => {
 
             const reserva = data[0];
             const voucher = await crearVoucher(reserva);
+            try {
+                await enviarVoucher(reserva.email, voucher);
+                 console.log("Voucher enviado correctamente");
+            }catch (err) {
+                console.error("Error enviado el correo:", err);
+            }
+            
+           
 
             console.log("Vouchcer creado:", voucher);
         }
