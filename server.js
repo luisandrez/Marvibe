@@ -348,7 +348,7 @@ async function subirVOucher(archivo) {
         .from("vouchers")
         .upload(nombreArchivo, fs.createReadStream(archivo), {
             contentType: "application/pdf",
-            upsert; true
+            upsert: true
 
         });
     if (error) throw error;
