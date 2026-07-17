@@ -15,7 +15,9 @@ const supabase = createClient(
 );
 
 const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
@@ -54,12 +56,12 @@ function crearVoucher(reserva) {
         });
 
         doc.fillColor("#EAF7FB")
-           .fontSize(9)
-           .text(
-            "Adventure ~ luxury ~ Caribbean Experience",
-            170,
-            84
-           );
+            .fontSize(9)
+            .text(
+                "Adventure ~ luxury ~ Caribbean Experience",
+                170,
+                84
+            );
 
 
         doc.fillColor("white")
@@ -67,7 +69,7 @@ function crearVoucher(reserva) {
             .text("MAR VIBE", 170, 22);
 
         doc.rect(30, 305, 535, 28)
-           .fill("#0B6E99");
+            .fill("#0B6E99");
 
         doc.fillColor("white")
             .fontSize(12)
@@ -93,13 +95,13 @@ function crearVoucher(reserva) {
 
 
         doc.fillColor("white")
-           .fontSize(22)
-           .font("Helvetica-Bold")
-           .text("¡Tu aventura comienza aqui!", 45, 125);
+            .fontSize(22)
+            .font("Helvetica-Bold")
+            .text("¡Tu aventura comienza aqui!", 45, 125);
 
         doc.fontSize(11)
-           .font("Helvetica")
-           .text("Voucher oficial de reserva - Mar Vibe Cartagena", 45, 155);
+            .font("Helvetica")
+            .text("Voucher oficial de reserva - Mar Vibe Cartagena", 45, 155);
 
 
         doc.rect(30, 300, 535, 8)
@@ -141,12 +143,12 @@ function crearVoucher(reserva) {
         });
 
         doc.fontSize(8)
-           .fillColor("gray")
-           .text("Abrir Ubicacion", 447, 408);
+            .fillColor("gray")
+            .text("Abrir Ubicacion", 447, 408);
 
         doc.fontSize(7)
-        .fillColor("#777777")
-        .text("Google Maps", 452, 418);
+            .fillColor("#777777")
+            .text("Google Maps", 452, 418);
 
 
 
@@ -162,29 +164,29 @@ function crearVoucher(reserva) {
         doc.fillColor("#0B6E99")
             .fontSize(22)
             .text("VOUCHER DE RESERVA", 50, 340);
-        
+
         doc.moveTo(50, 372)
-           .lineTo(300, 372)
-           .lineWidth(1)
-           .stroke("#00A8D8")
-        
-        
+            .lineTo(300, 372)
+            .lineWidth(1)
+            .stroke("#00A8D8")
+
+
 
         doc.fillColor("#0AA84F")
             .fontSize(16)
             .text("RESERVA CONFIRMADA", 360, 340);
 
         doc.fillColor("#555555")
-           .fontSize(11)
-           .text(
-            "Estamos felices de recibirte. Gracias por elegir Mar Vibe",
-            320,
-            365,
-            {
-                width: 210,
-                align: "center"
-            }
-           );
+            .fontSize(11)
+            .text(
+                "Estamos felices de recibirte. Gracias por elegir Mar Vibe",
+                320,
+                365,
+                {
+                    width: 210,
+                    align: "center"
+                }
+            );
 
         doc.fillColor("#0B6E99")
             .fontSize(15)
@@ -220,12 +222,12 @@ function crearVoucher(reserva) {
             );
 
         doc.fillColor("gray")
-        .fontSize(10)
-        .text(
-            `Emitido: ${new Date().toLocaleDateString("es-CO")}`,
-            50,
-            665
-        );
+            .fontSize(10)
+            .text(
+                `Emitido: ${new Date().toLocaleDateString("es-CO")}`,
+                50,
+                665
+            );
 
         doc.rect(40, 665, 515, 5)
             .fill("#0B6E99");
@@ -294,12 +296,12 @@ function crearVoucher(reserva) {
             );
 
         doc.fillColor("#00A8D8")
-           .fontSize(10)
-           .text(
-            "🌊 Vive el mar. Vive la Velocidad. Vive Mar vibe.",
-            50,
-            810
-           );
+            .fontSize(10)
+            .text(
+                "🌊 Vive el mar. Vive la Velocidad. Vive Mar vibe.",
+                50,
+                810
+            );
 
 
         doc.moveTo(30, 815)
@@ -315,7 +317,7 @@ function crearVoucher(reserva) {
             );
 
         doc.rect(0, 835, 595, 7)
-           .fill("#0B6E99"); 
+            .fill("#0B6E99");
 
         doc.end();
         stream.on("finish", () => resolve(archivo));
@@ -483,12 +485,12 @@ app.post("/webhook/wompi", async (req, res) => {
             const voucher = await crearVoucher(reserva);
             try {
                 await enviarVoucher(reserva.email, voucher);
-                 console.log("Voucher enviado correctamente");
-            }catch (err) {
-                console.error("Error enviado el correo:", err );
+                console.log("Voucher enviado correctamente");
+            } catch (err) {
+                console.error("Error enviado el correo:", err);
             }
-            
-           
+
+
 
             console.log("Vouchcer creado:", voucher);
         }
