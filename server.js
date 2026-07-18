@@ -46,7 +46,7 @@ function crearVoucher(reserva) {
         const stream = fs.createWriteStream(archivo);
 
         doc.pipe(stream);
-        dibujarCuadricula(doc);
+        
         doc.rect(0, 0, 595, 90)
             .fill("#0B6E99");
 
