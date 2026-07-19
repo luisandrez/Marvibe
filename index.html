@@ -524,8 +524,7 @@
                 estado: "pendiente"
 
             };
-            reservas.push(reserva);
-            localStorage.setItem("reservasMarvibe", JSON.stringify(reservas));
+           
 
             document.getElementById("formReservaCliente").reset();
             document.getElementById("fechaReserva").value = "";
@@ -565,12 +564,20 @@
 
 
         async function cargarReservasSupabase() {
+           
             const respuesta = await fetch("/api/reservas");
+
+            if (!respuesta.ok) {
+                alert("Error cargando Reservas");
+                return;
+            }
+           
             const reservas = await respuesta.json();
-            const listaAdmin = document.getElement.ById("listaReservasAdmin");
+           
+            const listaAdmin = document.getElementById("listaReservasAdmin");
 
             if (reservas.length === 0) {
-                listaAdmin.innerHTMl = '<p style="color:999;text-align:center;">No hay reservar.</p>';
+                listaAdmin.innerHTMl = '<p style="color:#999;text-align:center;">No hay reservar.</p>';
                 return;
 
         }
@@ -581,12 +588,13 @@
             html += `
             <div class="reserva-admin-item">
                 <div class="info-reserva">
-                    >strong>${reserva.nombre}</strong><br>
+                    <strong>${reserva.nombre}</strong><br>
                     📅${reserva.fecha}<br>
                     ⏰${reserva.hora}<br>
                     🚤${reserva.servicio}<br>
                     📱${reserva.telefono}<br>
                     📧${reserva.email}<br>
+                    
                     Estado:
                     <strong style="color:${reserva.estado === "pagado" ? "green" : 
     "orange"}">
