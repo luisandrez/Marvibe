@@ -46,7 +46,7 @@ function crearVoucher(reserva) {
         const stream = fs.createWriteStream(archivo);
 
         doc.pipe(stream);
-        
+
         doc.rect(0, 0, 595, 90)
             .fill("#0B6E99");
 
@@ -191,7 +191,7 @@ function crearVoucher(reserva) {
 
         doc.fillColor("#555555")
             .fontSize(11)
-            .text("Gracias por elegir Mar Vibe.", 40, 450 );
+            .text("Gracias por elegir Mar Vibe.", 40, 450);
 
         doc.fillColor("#0B6E99")
             .fontSize(15)
@@ -269,7 +269,7 @@ function crearVoucher(reserva) {
         doc.text("Instagram: @1marvibe0", 50, 825);
         doc.text("Cartagena- Colombia", 200, 825);
         doc.text("Email: 1vibemar0@gmail.com", 350, 825);
-        
+
 
 
 
@@ -363,8 +363,19 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
 
-const PORT = process.env.PORT || 3000;
 
+
+app.get("/reservas", async (req, res) => {
+    const { data, error } = await supabase
+        .from("reservas")
+        .select("*")
+        .order("fecha", { ascending: true });
+    if (error) {
+        return res.status(500).json(error);
+    }
+    res.json(data);
+
+});
 
 
 
@@ -521,6 +532,27 @@ app.post("/webhook/wompi", async (req, res) => {
 app.get("/webhook/wompi", (req, res) => {
     res.send("/Webhook funcionando");
 });
+
+app.get("/api/reservas", async (req, res) => {
+
+    const { data, error } = await supabase
+        .from("reservas")
+        .select("*")
+    order("fecha", { asceding: true });
+
+    if (error) {
+        return res.sstatus(500).json({
+            error: error.message
+        });
+    }
+
+    res.json(data);
+
+});
+
+
+
+
 
 app.listen(PORT, () => {
     console.log(`Servidor iniciando en http://localhost:${PORT}`);

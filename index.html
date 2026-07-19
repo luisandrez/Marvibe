@@ -550,7 +550,7 @@
 
             if (contraseña === '1234') {
                 document.getElementById('panelAdminReservas').style.display = 'block';
-                actualizarListaReservasAdmin();
+                cargarReservasSupabase();
                 cerrarModalAdmin();
             } else {
                 alert('❌ Contraseña incorrecta');
@@ -562,32 +562,47 @@
             document.getElementById('panelAdminReservas').style.display = 'none';
         }
 
-        function actualizarListaReservasAdmin() {
-            const listaAdmin = document.getElementById('listaReservasAdmin');
+
+
+        async function cargarReservasSupabase() {
+            const respuesta = await fetch("/api/reservas");
+            const reservas = await respuesta.json();
+            const listaAdmin = document.getElement.ById("listaReservasAdmin");
 
             if (reservas.length === 0) {
-                listaAdmin.innerHTML = '<p style="color: #999; text-align: center;">No hay reservas aún</p>';
+                listaAdmin.innerHTMl = '<p style="color:999;text-align:center;">No hay reservar.</p>';
                 return;
-            }
 
-            let html = '<div class="tabla-reservas">';
-            reservas.forEach((reserva, index) => {
-                html += `
-                    <div class="reserva-admin-item">
-                        <div class="info-reserva">
-                            <strong>${reserva.nombre}</strong> - ${reserva.fecha} ${reserva.hora}
-                            <p style="font-size: 12px; color: #666;">Servicio: ${reserva.servicio} | Tel: ${reserva.telefono}</p>
-                            ${reserva.notas ? `<p style="font-size: 12px; color: #888; font-style: italic;">Notas: ${reserva.notas}</p>` : ''}
-                        </div>
-                        <button class="btn-eliminar-admin" onclick="eliminarReservaAdmin(${index})">Eliminar</button>
-                    </div>
-                `;
-            });
-            html += '</div>';
-
-            listaAdmin.innerHTML = html;
         }
 
+        let html = "";
+
+        reservas.forEach(reserva => {
+            html += `
+            <div class="reserva-admin-item">
+                <div class="info-reserva">
+                    >strong>${reserva.nombre}</strong><br>
+                    📅${reserva.fecha}<br>
+                    ⏰${reserva.hora}<br>
+                    🚤${reserva.servicio}<br>
+                    📱${reserva.telefono}<br>
+                    📧${reserva.email}<br>
+                    Estado:
+                    <strong style="color:${reserva.estado === "pagado" ? "green" : 
+    "orange"}">
+                        ${reserva.estado}
+                    </strong>
+                </div>
+            </div>
+            `;
+            
+        });
+
+        listaAdmin.innerHTML = html;
+
+    }
+
+        
         function eliminarReservaAdmin(index) {
             if (confirm('¿Estás seguro de que deseas eliminar esta reserva?')) {
                 reservas.splice(index, 1);
