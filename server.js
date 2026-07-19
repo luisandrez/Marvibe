@@ -538,10 +538,10 @@ app.get("/api/reservas", async (req, res) => {
     const { data, error } = await supabase
         .from("reservas")
         .select("*")
-    order("fecha", { asceding: true });
+        .order("fecha", { ascending: true });
 
     if (error) {
-        return res.sstatus(500).json({
+        return res.status(500).json({
             error: error.message
         });
     }
